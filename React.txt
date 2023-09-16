@@ -1,0 +1,5 @@
+How regex work
+
+"\" The forward slash character is used to denote the boundaries of the regular expression
+"^" Start of string, or start of line in multi-line pattern
+"(?=.*[a-z])" this mean that does the string contain a lower case a to z character
