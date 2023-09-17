@@ -7,7 +7,7 @@ const SignIn = () => {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.path || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const userNameRef = useRef();
   const errorRef = useRef();
@@ -45,7 +45,7 @@ const SignIn = () => {
       const roles = response.data.roles;
       const accessToken = response?.data?.accessToken;
       setAuth({ userName, password, roles, accessToken });
-      navigate("/", { replace: true });
+      navigate(from, { replace: true });
     } catch (error) {
       if (!error?.response) {
         setErrorMessage("server not responding");
