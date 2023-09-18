@@ -1,15 +1,12 @@
 import axios from "../api/axios";
 import useAuth from "./useAuth";
-import { useNavigate, useLocation } from "react-router-dom";
 const useRefreshToken = () => {
   const { auth, setAuth } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const refresh = async () => {
     const response = await axios.get("/refresh", {
       withCredentials: true,
     });
+    console.log(response.data.roles);
     setAuth((prev) => {
       return {
         ...prev,

@@ -11,6 +11,7 @@ const PersistenceLogin = () => {
   useEffect(() => {
     const verifyRefreshToken = async () => {
       try {
+        console.log("am i getting called");
         await refresh();
       } catch (error) {
         console.log(error);
@@ -18,9 +19,9 @@ const PersistenceLogin = () => {
         setIsLoading(false);
       }
     };
-    console.log("+++++++++++++++++++");
-    console.log(auth?.accessToken);
-    auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
+    console.log("++++++++++++++++++++++++");
+    console.log(!auth?.accessToken);
+    !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
   }, []);
 
   useEffect(() => {
