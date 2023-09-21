@@ -4,7 +4,7 @@ import axios from "../api/axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 const Auth_URL = "/auth";
 const SignIn = () => {
-  const { setAuth } = useAuth();
+  const { setAuth, persist, setPersist } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -19,6 +19,12 @@ const SignIn = () => {
   const [passwordFocus, setPasswordFocus] = useState();
 
   const [errorMessage, setErrorMessage] = useState();
+  const togglePersist = () => {
+    setPersist((prev) => !prev);
+  };
+  useEffect(() => {
+    localStorage.setItem("persist", persist);
+  }, [persist]);
 
   useEffect(() => {
     userNameRef.current.focus();
@@ -93,6 +99,15 @@ const SignIn = () => {
           value={password}
         />
         <button>Sign in</button>
+        <div className="persistCheck">
+          <input
+            type="checkbox"
+            id="persist"
+            onChange={togglePersist}
+            checked={persist}
+          />
+          <label htmlFor="persist">trust this device</label>
+        </div>
       </form>
       <p>Need an account ?</p>
       <a href="#">Sign up</a>

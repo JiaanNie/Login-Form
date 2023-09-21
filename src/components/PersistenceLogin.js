@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 const PersistenceLogin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const refresh = useRefreshToken();
-  const { auth } = useAuth();
+  const { auth, persist } = useAuth();
 
   useEffect(() => {
     const verifyRefreshToken = async () => {
@@ -27,7 +27,11 @@ const PersistenceLogin = () => {
     console.log(auth);
   }, [isLoading]);
 
-  return <>{isLoading ? <p>....Loading</p> : <Outlet />}</>;
+  // if persist is false, want show the outlet
+  // otherwise check is loading if false load the outlets
+  return (
+    <>{!persist ? <Outlet /> : isLoading ? <p>....Loading</p> : <Outlet />}</>
+  );
 };
 
 export default PersistenceLogin;
