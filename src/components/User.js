@@ -46,11 +46,11 @@ const User = () => {
     <article>
       <h2>Users List</h2>
       {users?.length ? (
-        <ul>
+        <div>
           {users.map((user, i) => (
-            <li key={i}>{user?.username}</li>
+            <div key={i}>{user?.username}</div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No users to display</p>
       )}

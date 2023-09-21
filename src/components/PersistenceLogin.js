@@ -11,7 +11,6 @@ const PersistenceLogin = () => {
   useEffect(() => {
     const verifyRefreshToken = async () => {
       try {
-        console.log("am i getting called");
         await refresh();
       } catch (error) {
         console.log(error);
@@ -19,8 +18,7 @@ const PersistenceLogin = () => {
         setIsLoading(false);
       }
     };
-    console.log("++++++++++++++++++++++++");
-    console.log(!auth?.accessToken);
+    // if the auth.accessToken does not exist call the verifyrefreshtoken  otherwise set isloading is true
     !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
   }, []);
 
