@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
 const Auth_URL = "/auth";
 const SignIn = () => {
   const { setAuth, persist, setPersist } = useAuth();
@@ -12,7 +13,7 @@ const SignIn = () => {
   const userNameRef = useRef();
   const errorRef = useRef();
 
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useLocalStorage("username", ""); //useState("");
   const [userNameFocus, setUserNameFocus] = useState();
 
   const [password, setPassword] = useState("");
